@@ -1,25 +1,34 @@
 html {
     font-size: 63.5%;
-
-}
-html:after {
-    content : "";
-    background: url('/public/assets/background.jpg');
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
+    background: url('../assets/backgroundLight.jpg');
+    background-size: cover;
+    background-position: center;
     
-    width: 100%;
-    height: 100%;
-    opacity : 0.2;
-    z-index: -1;
-
 }
 body,html {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: sans-serif;   
+}
+.wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+}
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        h1 {
+            font-size: 4.5rem;
+            text-align: center; 
+            padding: 2.5rem;
+            color: white;
+            background: rgba(0,0,0,0.5);
+            text-shadow: .4rem 0 .5rem black;
+            font-family: monospace;
+            letter-spacing: .5rem;
+            border: .4rem solid black;    
+        }
 }
 .keys {
     display: flex;
@@ -27,21 +36,75 @@ body,html {
     min-height: 100vh;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .key {
     border: .4rem solid black;
     border-radius: .5rem;
     margin: 1rem;
     font-size: 1.5rem;
-    padding: 1rem .5rem;
-    transition: all .07s ease;
-    width: 10rem;
+    padding: 2rem 2rem;
+    transition: all .3s ease-in-out;
+    width: calc(25% - 2rem);
     text-align: center;
     color: white;
-    background: rgba(0,0,0,0.4);
-    text-shadow: 0 0 .5rem black;
+    background: rgba(0,0,0,0.5);
+    text-shadow: .4rem 0 .5rem black;
+    &:hover {
+        transform: scale(1.1);
+        border: .4rem solid #d52c49;
+    }
+}
+.playing {
+    border-color: #d52c49;
+    box-shadow: 0 0 1rem #d52c49;
+    animation: shake 0.07s infinite alternate;
 }
 kbd {
     display: block;
     font-size: 4rem;
 }
+.sound {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    color: #d52c49;
+}
+@keyframes shake {
+    0% {
+        transform: translate(80px, -45px);
+    }
+    50% {
+        transform: translate(-52px, 55px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+// // Responsive 
+
+// /* Large Devices, Wide Screens */
+// @media only screen and (max-width : 1200px) {
+
+// }
+
+// /* Medium Devices, Desktops */
+// @media only screen and (max-width : 992px) {
+
+// }
+
+// /* Small Devices, Tablets */
+// @media only screen and (max-width : 768px) {
+
+// }
+
+// /* Extra Small Devices, Phones */ 
+// @media only screen and (max-width : 480px) {
+
+// }
+
+// /* Custom, iPhone Retina */ 
+// @media only screen and (max-width : 320px) {
+
+// }
