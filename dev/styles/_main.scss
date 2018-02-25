@@ -50,13 +50,13 @@ header {
     color: white;
     background: rgba(0,0,0,0.5);
     text-shadow: .4rem 0 .5rem black;
+
 }
-/* hover effect only visible to devices that report back as not supporting touch */
-html.nontouch .key:hover { 
+//hover effect only visible to devices that report back as not supporting touch 
+body.hasHover .key:hover{
     transform: scale(1.1);
     border: .4rem solid #d52c49;
 }
-
 .playing {
     border-color: #d52c49;
     box-shadow: 0 0 1rem #d52c49;

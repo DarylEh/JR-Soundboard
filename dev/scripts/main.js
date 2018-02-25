@@ -27,8 +27,7 @@ function playSound(audio, key) {
 
 function removeTransition(e) {
     if (e.propertyName !== 'box-shadow') return;
-    e.target.classList.remove('playing');
-    console.log(e);
+    e.target.classList.remove('playing', 'key&:hover');
 }
 
 // variable grabs all divs labeled .key
@@ -43,8 +42,43 @@ keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 //listens for a keydown event and runs onKeyDown function
 window.addEventListener('keydown', onKeyDown);
 
-//used to remove sticky hover states on touch devices
-const touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
-if (!touchsupport) { // browser doesn't support touch
-    document.documentElement.className += " non-touch"
+// //used to remove sticky hover states on touch devices
+function hasTouch() {
+    return 'ontouchstart' in document.documentElement
+        || navigator.maxTouchPoints > 0
+        || navigator.msMaxTouchPoints > 0;
 }
+
+function watchForHover() {
+    var hasHoverClass = false;
+    var container = document.body;
+    var lastTouchTime = 0;
+
+    function enableHover() {
+        // filter emulated events coming from touch events
+        if (new Date() - lastTouchTime < 500) return;
+        if (hasHoverClass) return;
+
+        container.className += ' hasHover';
+        hasHoverClass = true;
+    }
+
+    function disableHover() {
+        if (!hasHoverClass) return;
+
+        container.className = container.className.replace(' hasHover', '');
+        hasHoverClass = false;
+    }
+
+    function updateLastTouchTime() {
+        lastTouchTime = new Date();
+    }
+
+    document.addEventListener('touchstart', updateLastTouchTime, true);
+    document.addEventListener('touchstart', disableHover, true);
+    document.addEventListener('mousemove', enableHover, true);
+
+    enableHover();
+}
+
+watchForHover();
