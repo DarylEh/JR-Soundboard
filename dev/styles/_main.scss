@@ -50,11 +50,13 @@ header {
     color: white;
     background: rgba(0,0,0,0.5);
     text-shadow: .4rem 0 .5rem black;
-    &:hover {
-        transform: scale(1.1);
-        border: .4rem solid #d52c49;
-    }
 }
+/* hover effect only visible to devices that report back as not supporting touch */
+html.nontouch .key:hover { 
+    transform: scale(1.1);
+    border: .4rem solid #d52c49;
+}
+
 .playing {
     border-color: #d52c49;
     box-shadow: 0 0 1rem #d52c49;
@@ -115,14 +117,12 @@ kbd {
         padding: 2rem 2rem;
         justify-content: space-between;
         align-content: center;
-        
+    
         .sound {
             margin:auto 0;
             font-size: 2.5rem;
         }
     }
-
-
 }
 
 // /* Custom, iPhone Retina */ 

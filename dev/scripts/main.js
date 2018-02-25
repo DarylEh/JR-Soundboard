@@ -28,6 +28,7 @@ function playSound(audio, key) {
 function removeTransition(e) {
     if (e.propertyName !== 'box-shadow') return;
     e.target.classList.remove('playing');
+    console.log(e);
 }
 
 // variable grabs all divs labeled .key
@@ -41,3 +42,9 @@ keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
 //listens for a keydown event and runs onKeyDown function
 window.addEventListener('keydown', onKeyDown);
+
+//used to remove sticky hover states on touch devices
+const touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+if (!touchsupport) { // browser doesn't support touch
+    document.documentElement.className += " non-touch"
+}
